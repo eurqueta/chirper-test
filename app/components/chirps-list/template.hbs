@@ -1,6 +1,9 @@
-{{chirps-list/chirp-message}}
 
+{{#each chirps as |chirp|}}
+  {{chirps-list/chirp-message chirp=chirp}}
+{{else}}
 <div class="no-chirps">
     <div class="icon"></div>
     <p>No existen chirps para mostrar</p>
 </div>
+{{/each}}
