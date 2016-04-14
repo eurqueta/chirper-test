@@ -84,6 +84,18 @@ export default function() {
     };
   });
 
+  this.get('chirp/:id',function (db, request) {
+    let id = request.params.id;
+
+    return {
+      data: {
+        type: 'chirps',
+        id: id,
+        attributes: db.chirp.find(id)
+      }
+    };
+  });
+
   this.get('/chirps', function(db, request) {
     return {
       data: db.chirps.map(attrs => (
