@@ -1,6 +1,6 @@
 
 {{#each sortedChirps as |chirp|}}
-  {{chirps-list/chirp-message chirp=chirp}}
+  {{chirps-list/chirp-message chirp=chirp user=chirp.user}}
 {{else}}
 <div class="no-chirps">
     <div class="icon"></div>

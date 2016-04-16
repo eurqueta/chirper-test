@@ -66,19 +66,9 @@ export default function() {
     });
 
   */
-  this.get('users/:id',function (schema, request) {
-    let id = request.params.id;
+  this.get('users/:id');
 
-    return schema.user.find(id);
-  });
+  this.get('chirp/:id');
 
-  this.get('chirp/:id',function (schema, request) {
-    let id = request.params.id;
-
-    return schema.chirp.find(id);
-  });
-
-  this.get('/chirps', function(schema, request) {
-    return schema.chirp.all();
-  });
+  this.get('/chirps');
 }
