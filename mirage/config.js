@@ -7,25 +7,19 @@ export default function() {
 
     Note: these only affect routes defined *after* them!
   */
+
   // this.urlPrefix = '';    // make this `http://localhost:8080`, for example, if your API is on a different server
    this.namespace = 'api';    // make this `api`, for example, if your API is namespaced
   // this.timing = 400;      // delay for each request, automatically set to 0 during testing
 
   /*
-    Route shorthand cheatsheet
-  */
-  /*
-    GET shorthands
+    Shorthand cheatsheet:
 
-    // Collections
-    this.get('/contacts');
-    this.get('/contacts', 'users');
-    this.get('/contacts', ['contacts', 'addresses']);
-
-    // Single objects
-    this.get('/contacts/:id');
-    this.get('/contacts/:id', 'user');
-    this.get('/contacts/:id', ['contact', 'addresses']);
+    this.get('/posts');
+    this.post('/posts');
+    this.get('/posts/:id');
+    this.put('/posts/:id'); // or this.patch
+    this.del('/posts/:id');
   */
 
   /*
@@ -72,42 +66,19 @@ export default function() {
     });
 
   */
-  this.get('users/:id',function (db, request) {
+  this.get('users/:id',function (schema, request) {
     let id = request.params.id;
 
-    return {
-      data: {
-        type: 'users',
-        id: id,
-        attributes: db.users.find(id)
-      }
-    };
+    return schema.user.find(id);
   });
 
-  this.get('chirp/:id',function (db, request) {
+  this.get('chirp/:id',function (schema, request) {
     let id = request.params.id;
 
-    return {
-      data: {
-        type: 'chirps',
-        id: id,
-        attributes: db.chirp.find(id)
-      }
-    };
+    return schema.chirp.find(id);
   });
 
-  this.get('/chirps', function(db, request) {
-    return {
-      data: db.chirps.map(attrs => (
-      { type: 'chirps', id: attrs.id, attributes: attrs }
-      ))
-    };
+  this.get('/chirps', function(schema, request) {
+    return schema.chirp.all();
   });
 }
-
-/*
-You can optionally export a config that is only loaded during tests
-export function testConfig() {
-
-}
-*/
