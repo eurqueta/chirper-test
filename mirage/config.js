@@ -66,9 +66,11 @@ export default function() {
     });
 
   */
-  this.get('users/:id');
+  this.get('/users/:id');
 
-  this.get('chirp/:id');
+  this.get('/users');
+
+  this.get('chirps/:id');
 
   this.get('/chirps');
 }
